@@ -1,0 +1,15 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  # Exclude:
+  #   - bin/bundle
+  #   - db/schema.rb
+  NewCops: enable
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false

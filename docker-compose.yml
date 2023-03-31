@@ -1,0 +1,26 @@
+---
+version: '3'
+
+services:
+  web:
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+    command: bin/rails s
+    volumes:
+      - .:/app:cached
+      - bundle:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    # env_file: .env
+    # depends_on:
+    #   kafka:
+    #     condition: service_started
+    #   postgres:
+    #     condition: service_healthy
+    #   dind:
+    #     condition: service_started
+
+volumes:
+  bundle:
