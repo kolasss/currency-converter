@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root to: proc { |_env| [200, {}, ['OK']] }
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get 'rates', to: 'rates#index'
+  post 'rates', to: 'rates#index'
 end

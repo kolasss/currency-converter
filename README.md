@@ -1,24 +1,48 @@
-# README
+# Ruble exchange rates service
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Dependencies:
 
-Things you may want to cover:
+- ruby 3.2
 
-* Ruby version
+For production we might use Redis or Memcached for caching, change `config.cache_store` in `config/environments/production.rb`.
 
-* System dependencies
+## Usage
 
-* Configuration
+install and configure
+```sh
+bundle install
+```
 
-* Database creation
+### Start app
 
-* Database initialization
+start rails
+```sh
+bin/rails s
+```
 
-* How to run the test suite
+### Run in docker
 
-* Services (job queues, cache servers, search engines, etc.)
+edit docker-compose.yml if you want
 
-* Deployment instructions
+```sh
+docker compose build
+docker compose up
+```
 
-* ...
+### for development/test
+
+run in docker
+```sh
+docker compose build
+docker compose run --service-ports web bash
+```
+
+run tests
+```sh
+bin/rspec
+```
+
+run rubocop
+```sh
+bundle exec rubocop
+```
