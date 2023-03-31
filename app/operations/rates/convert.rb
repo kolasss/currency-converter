@@ -4,13 +4,13 @@ module Rates
   class Convert
     include Dry::Monads[:result, :do]
 
-    def call(roubles)
-      roubles = yield to_big_decimal(roubles)
+    def call(rubles)
+      rubles = yield to_big_decimal(rubles)
       rates = yield bank_rates
 
       result = {
-        usd: multiply_round(roubles, rates[:usd]),
-        eur: multiply_round(roubles, rates[:eur])
+        usd: calculate(rubles, rates[:usd]),
+        eur: calculate(rubles, rates[:eur])
       }
 
       Success(result)
@@ -18,10 +18,10 @@ module Rates
 
     private
 
-    def to_big_decimal(roubles)
-      return Failure(:invalid_param) if roubles.blank?
+    def to_big_decimal(rubles)
+      return Failure(:invalid_param) if rubles.blank?
 
-      Success(BigDecimal(roubles.to_s))
+      Success(BigDecimal(rubles.to_s))
     rescue ArgumentError
       Failure(:invalid_param)
     end
@@ -32,8 +32,8 @@ module Rates
       Failure(:error_getting_rates)
     end
 
-    def multiply_round(roubles, rate)
-      (roubles / rate).ceil(2).to_f
+    def calculate(rubles, rate)
+      (rubles / rate).ceil(2).to_f
     end
   end
 end

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Rates::Convert do
-  subject(:call) { described_class.new.call(roubles) }
+  subject(:call) { described_class.new.call(rubles) }
 
   let(:cbr) { instance_double(Banks::Cbr) }
   let(:rates) { { usd: BigDecimal('77.0863'), eur: BigDecimal('83.7639') } }
@@ -14,7 +14,7 @@ RSpec.describe Rates::Convert do
   end
 
   context 'with valid param' do
-    let(:roubles) { 1490.96 }
+    let(:rubles) { 1490.96 }
 
     it 'returns converted data' do
       expect(call.success?).to be true
@@ -31,7 +31,7 @@ RSpec.describe Rates::Convert do
   end
 
   context 'with invalid param' do
-    let(:roubles) { 'тысяча' }
+    let(:rubles) { 'тысяча' }
 
     it 'returns failure' do
       expect(call.success?).to be false

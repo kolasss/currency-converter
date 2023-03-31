@@ -2,7 +2,7 @@
 
 class RatesController < ApplicationController
   def index
-    result = Rates::Convert.new.call(params[:roubles])
+    result = Rates::Convert.new.call(params[:rubles])
 
     if result.success?
       render json: { result: result.value! }
