@@ -33,7 +33,7 @@ module Rates
     end
 
     def calculate(rubles, rate)
-      (rubles / rate).ceil(2).to_f
+      (rubles / rate).round(2).to_f
     end
   end
 end

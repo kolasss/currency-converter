@@ -18,7 +18,7 @@ RSpec.describe Rates::Convert do
 
     it 'returns converted data' do
       expect(call.success?).to be true
-      expect(call.value!).to eq({ usd: 19.35, eur: 17.8 })
+      expect(call.value!).to eq({ usd: 19.34, eur: 17.8 })
     end
 
     context 'with another rates' do
